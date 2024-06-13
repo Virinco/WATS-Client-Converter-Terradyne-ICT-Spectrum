@@ -67,11 +67,6 @@
     <Compile Include="UnitsCalc.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Examples\SampleICTData.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
     <None Include="CONTRIBUTING.md" />
     <None Include="COPYING" />
@@ -79,6 +74,9 @@
     <None Include="CTRDIMEX.DOC" />
     <None Include="packages.config" />
     <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Examples\sample_ict_data.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
