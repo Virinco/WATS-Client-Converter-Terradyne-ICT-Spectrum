@@ -105,6 +105,9 @@ namespace TerradyneSpectrumConverter
                 case "SNAME":
                     currentMainStep.Name = (string)match.GetSubField("SNAME");
                     break;
+                case "Shorts":
+                    currentMainStep.SubSteps.Last().Comment += ((string)match.GetSubField("COMM1"), (string)match.GetSubField("COMM2"));
+                    break;
                 case "DESC":
                     currentMainStep.Description = (string)match.GetSubField("DESC");
                     break;
@@ -263,6 +266,10 @@ namespace TerradyneSpectrumConverter
 
             fmt = searchFields.AddRegExpField("ConnectedNodes", ReportReadState.InTest, @"\s*\x28CONNECTED_NODES:.*?TPNAME: (?<TPNAME>.+?)\x29.*", "", typeof(string));
             fmt.AddSubField("TPNAME", typeof(string));
+
+            fmt = searchFields.AddRegExpField("Shorts", ReportReadState.InTest, @"\x28(?<COMM1>SC_FROM_NODES:.+)|\x28(?<COMM2>SC_TO_NODES:.+)", "", typeof(string));
+            fmt.AddSubField("COMM1", typeof(string));
+            fmt.AddSubField("COMM2", typeof(string));
 
             fmt = searchFields.AddRegExpField("FSCAN_PIN", ReportReadState.InTest, @".*\(FSCAN_PIN: \(STAT: (?<STAT>[\w]+)\).* \(TPNAME: (?<TPNAME>\w+)\) \)", null, typeof(string));
             fmt.AddSubField("STAT", typeof(StepStatusType));
